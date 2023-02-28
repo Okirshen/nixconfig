@@ -47,7 +47,7 @@ in {
         imports = [ ./home ];
       }
       ./configuration.nix
-      ../hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       ] ++ (with nixos-hardware.nixosModules; [ common-pc-ssd common-gpu-amd common-cpu-intel ]);
   };
 }

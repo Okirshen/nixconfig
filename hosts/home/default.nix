@@ -53,8 +53,8 @@
             position = "top";
             height = 35;
             modules-left = [ "wlr/workspaces" "tray" "cpu" ];
-            # modules-center = [];
-            modules-right = [ "pulseaudio" "clock" ];
+            modules-center = ["clock" ];
+            modules-right = [ "pulseaudio" ];
           };
         };
       };
@@ -79,7 +79,7 @@
         shellAliases = {
           cd = "z";
           ls = "lsd";
-          update-config = "sudo nixos-rebuild switch";
+          update-config = "sudo nixos-rebuild switch --flake ~/.nixconfig";
           sudo = "doas";
         };
       };
