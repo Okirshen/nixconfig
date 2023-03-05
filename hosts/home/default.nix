@@ -5,6 +5,7 @@
 
 
     home.packages = with pkgs; [
+      gitAndTools.gh
       mpv
       rustup
       obs-studio
@@ -43,8 +44,18 @@
 
     home.stateVersion = "22.11";
     xdg.configFile."hypr".source = ./hypr;
-    environment.variables.EDITOR = "hx";
+    home.sessionVariables.EDITOR = "hx";
 
+    services = {
+      gnome-keyring.enable = true;
+      mako = {
+        enable = true;
+        output = "DP-2";
+        borderRadius = 10;
+        backgroundColor = "#282a36";
+        borderSize = 0;
+      };
+    };
     programs = {
       waybar = {
         enable = true;
@@ -105,7 +116,10 @@
           };
         };
       };
-      gh.enable = true;
+      # gh = {
+        # enable = true;
+        # package = pkgs.gitAndTools.gh;
+      # };
       kitty = {
         enable = true;
         font = {
@@ -156,13 +170,6 @@
       zoxide = {
         enable = true;
         enableZshIntegration = true;
-      };
-      mako = {
-        enable = true;
-        output = "DP-2";
-        borderRadius = 10;
-        backgroundColor = "#282a36";
-        borderSize = 0;
       };
       helix = {
         enable = true;
