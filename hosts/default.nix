@@ -10,8 +10,16 @@ let
       godot-FBX2glTF = pkgs.callPackage ../pkgs/godot-FBX2glTF { };
     };
 
+    config.permittedInsecurePackages = [
+      "python-2.7.18.6"
+    ];
+
     overlays = [
       (self: super: {
+        aseprite-unfree = super.aseprite-unfree.overrideAttrs (attrs: {
+          version = "1.3-beta21";
+          postPatch = "";
+        });
         godot_4 = super.godot_4.override (godotOld: {
           libX11 = godotOld.libX11.overrideAttrs (attrs: {
             version = "1.8.4";
@@ -47,7 +55,7 @@ in {
         imports = [ ./home ];
       }
       ./configuration.nix
-      /etc/nixos/hardware-configuration.nix
+      ../hardware-configuration.nix
       ] ++ (with nixos-hardware.nixosModules; [ common-pc-ssd common-gpu-amd common-cpu-intel ]);
   };
 }

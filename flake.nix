@@ -3,13 +3,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # nixneovim.url = "github:nixneovim/nixneovim";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, hyprland, nixos-hardware, home-manager, ... }:
+  outputs = { nixpkgs, hyprland, nixos-hardware, nixneovim, home-manager, ... }:
     let 
       primaryUser = "okirshen";
     in

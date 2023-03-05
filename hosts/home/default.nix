@@ -17,7 +17,7 @@
       stremio
       rust-analyzer
       godot_4
-      aseprite
+      aseprite-unfree
       spotify
       spicetify-cli
       ark
@@ -43,6 +43,7 @@
 
     home.stateVersion = "22.11";
     xdg.configFile."hypr".source = ./hypr;
+    environment.variables.EDITOR = "hx";
 
     programs = {
       waybar = {
@@ -53,7 +54,7 @@
             position = "top";
             height = 35;
             modules-left = [ "wlr/workspaces" "tray" "cpu" ];
-            modules-center = ["clock" ];
+            modules-center = [ "clock" ];
             modules-right = [ "pulseaudio" ];
           };
         };
@@ -79,8 +80,9 @@
         shellAliases = {
           cd = "z";
           ls = "lsd";
-          update-config = "sudo nixos-rebuild switch --flake ~/.nixconfig";
+          update-config = "doas nixos-rebuild switch --flake ~/.nixconfig/";
           sudo = "doas";
+          nv = "nvim";
         };
       };
       starship = {
@@ -176,25 +178,29 @@
           };
         };
       };
-      neovim = {
-        plugins = with pkgs.vimPlugins; [
-          yuck-vim
-          telescope-nvim
-          alpha-nvim
-          nvim-colorizer-lua
-          nvim-web-devicons
-          nvim-treesitter
-          nvim-cmp
-          cmp-nvim-lsp
-          cmp-path
-          cmp-cmdline
-          gitsigns-nvim
-          nvim-autopairs
-          comment-nvim
-          nvim-lspconfig
-          dracula-nvim
-        ];
-      };
+      # nixneovim = {
+        # enable = true;
+        # viAlias = true;
+        # vimAlias = true;
+        # colorschemes.dracula.enable = true;
+        # plugins = with pkgs.vimPlugins; [
+        #   yuck-vim
+        #   telescope-nvim
+        #   alpha-nvim
+        #   nvim-colorizer-lua
+        #   nvim-web-devicons
+        #   nvim-treesitter
+        #   nvim-cmp
+        #   cmp-nvim-lsp
+        #   cmp-path
+        #   cmp-cmdline
+        #   gitsigns-nvim
+        #   nvim-autopairs
+        #   comment-nvim
+        #   nvim-lspconfig
+        #   dracula-nvim
+        # ];
+      # };
     };
   };
 }
