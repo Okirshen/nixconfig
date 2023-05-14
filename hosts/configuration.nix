@@ -25,8 +25,17 @@
 
   environment.binsh = "${pkgs.dash}/bin/dash";
   users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
+
+  services.syncthing = {
+        enable = true;
+        user = "${primaryUser}";
+        dataDir = "/home/${primaryUser}/Projects";    # Default folder for new synced folders
+        configDir = "/home/${primaryUser}/Projects/.config/syncthing";   # Folder for Syncthing's settings and keys
+    };
 
   services.flatpak.enable = true;
+  virtualisation.docker.enable = true;
   programs.gamemode.enable = true;
   programs.steam = {
     enable = true;
@@ -55,6 +64,8 @@
 
   services.printing.enable = true;
 
+  services.gnome.gnome-keyring.enable = true;
+
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -67,7 +78,7 @@
 
   users.users.${primaryUser} = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "docker" ];
   };
 
   fonts.fonts = with pkgs; [

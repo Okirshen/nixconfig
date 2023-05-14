@@ -5,6 +5,24 @@
 
 
     home.packages = with pkgs; [
+      kdenlive
+      ungoogled-chromium
+      cataclysm-dda-git
+      postman
+      dbeaver
+      cheat
+      tldr
+      git-ignore
+      openssl.dev
+      pkg-config
+      ngrok
+      python310Packages.python-lsp-server
+      python3
+      pcmanfm
+      sxiv
+      zellij
+      jellyfin-media-player
+      thefuck
       gitAndTools.gh
       mpv
       rustup
@@ -43,20 +61,33 @@
     ];
 
     home.stateVersion = "22.11";
+    xdg.mimeApps.defaultApplications = {
+      "application/pdf" = "firefox.desktop";
+      "image/png" = [
+        "sxiv.desktop"
+        "gimp.desktop"
+      ];
+      "inode/directory" = "pcmanfm.desktop";
+    };
     xdg.configFile."hypr".source = ./hypr;
-    home.sessionVariables.EDITOR = "hx";
+    xdg.configFile."zellij".source = ./zellij;
+    home.sessionVariables = { 
+      EDITOR = "hx";
+      NIXOS_OZONE_WL = "1";
+    };
 
     services = {
-      gnome-keyring.enable = true;
+      gpg-agent.enable = true;
       mako = {
         enable = true;
-        output = "DP-2";
+        output = "DP-4";
         borderRadius = 10;
         backgroundColor = "#282a36";
         borderSize = 0;
       };
     };
     programs = {
+      gpg.enable = true;
       waybar = {
         enable = true;
         settings = {
@@ -74,10 +105,13 @@
         enable = true;
         enableUpdateCheck = false;
         extensions = with pkgs.vscode-extensions; [ 
-          
+          matklad.rust-analyzer
           dracula-theme.theme-dracula 
+          eamodio.gitlens
+          file-icons.file-icons
+          asvetliakov.vscode-neovim
         ];      
-        userSettings = { workbench.colorTheme = "dracula"; };
+        userSettings = { "workbench.colorTheme" = "Dracula"; };
       };
       firefox.enable = true;
       zsh = {
