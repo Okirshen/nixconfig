@@ -1,4 +1,4 @@
-{ nixpkgs, hyprland, home-manager, nixos-hardware, primaryUser }:
+{ nixpkgs, hyprland, home-manager, nixos-hardware, nixneovim, primaryUser }:
 
 let
   system = "x86_64-linux";
@@ -15,20 +15,22 @@ let
     ];
 
     overlays = [
+      nixneovim.overlays.default
       (self: super: {
         aseprite-unfree = super.aseprite-unfree.overrideAttrs (attrs: {
           version = "1.3-beta21";
           postPatch = "";
         });
-        godot_4 = super.godot_4.override (godotOld: {
-          libX11 = godotOld.libX11.overrideAttrs (attrs: {
-            version = "1.8.4";
-            src = super.fetchurl {
-              url = "mirror://xorg/individual/lib/libX11-1.8.4.tar.xz";
-              sha256 = "sha256-yaKHpa76mATOPPr89Rb+lu0/fo5FwOLuWehMhnV99Rg=";
-            };
-          });
-        });
+      # I haven't tested this but hopefully this is fixed
+      #   godot_4 = super.godot_4.override (godotOld: {
+      #     libX11 = godotOld.libX11.overrideAttrs (attrs: {
+      #       version = "1.8.4";
+      #       src = super.fetchurl {
+      #         url = "mirror://xorg/individual/lib/libX11-1.8.4.tar.xz";
+      #         sha256 = "sha256-yaKHpa76mATOPPr89Rb+lu0/fo5FwOLuWehMhnV99Rg=";
+      #       };
+      #     });
+      #   });
       })
     ];
   };
@@ -52,10 +54,14 @@ in {
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        imports = [ ./home ];
+        imports = [ 
+          # nixneovim.nixosModules.default 
+          ./home 
+        ];
       }
       ./configuration.nix
       ../hardware-configuration.nix
+      # ./desktop
       ] ++ (with nixos-hardware.nixosModules; [ common-pc-ssd common-gpu-amd common-cpu-intel ]);
   };
 }

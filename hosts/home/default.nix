@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   home-manager.users.okirshen = { pkgs, ... }: {
 
 
     home.packages = with pkgs; [
+      peek
       kdenlive
       ungoogled-chromium
       cataclysm-dda-git
@@ -72,7 +73,8 @@
     xdg.configFile."hypr".source = ./hypr;
     xdg.configFile."zellij".source = ./zellij;
     home.sessionVariables = { 
-      EDITOR = "hx";
+      # EDITOR = "hx";
+      TERM = "kitty";
       NIXOS_OZONE_WL = "1";
     };
 
@@ -220,27 +222,37 @@
         };
       };
       # nixneovim = {
-        # enable = true;
-        # viAlias = true;
-        # vimAlias = true;
-        # colorschemes.dracula.enable = true;
-        # plugins = with pkgs.vimPlugins; [
-        #   yuck-vim
-        #   telescope-nvim
-        #   alpha-nvim
-        #   nvim-colorizer-lua
-        #   nvim-web-devicons
-        #   nvim-treesitter
-        #   nvim-cmp
-        #   cmp-nvim-lsp
-        #   cmp-path
-        #   cmp-cmdline
-        #   gitsigns-nvim
-        #   nvim-autopairs
-        #   comment-nvim
-        #   nvim-lspconfig
-        #   dracula-nvim
-        # ];
+      #   enable = true;
+      #   defaultEditor = true;
+      #   viAlias = true;
+      #   vimAlias = true;
+      #   colorschemes.dracula.enable = true;
+      #   plugins = {
+      #     lsp = {
+      #       enable = true;
+      #       rust-analyzer.enable = true;
+      #     };
+      #     treesitter = {
+      #       enable = true;
+      #       indent = true;
+      #     };
+      #   };
+      #   extraPlugins = with pkgs.vimPlugins; [
+      #     yuck-vim
+      #     telescope-nvim
+      #     alpha-nvim
+      #     nvim-colorizer-lua
+      #     nvim-web-devicons
+      #     nvim-treesitter
+      #     nvim-cmp
+      #     cmp-nvim-lsp
+      #     cmp-path
+      #     cmp-cmdline
+      #     gitsigns-nvim
+      #     nvim-autopairs
+      #     comment-nvim
+      #     dracula-nvim
+      #   ];
       # };
     };
   };
