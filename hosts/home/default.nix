@@ -59,6 +59,7 @@
       ckan
       ripgrep
       nixfmt
+      neovim
     ];
 
     home.stateVersion = "22.11";
@@ -72,6 +73,7 @@
     };
     xdg.configFile."hypr".source = ./hypr;
     xdg.configFile."zellij".source = ./zellij;
+    xdg.configFile."nvim".source = ./nvim;
     home.sessionVariables = { 
       # EDITOR = "hx";
       TERM = "kitty";
@@ -127,6 +129,8 @@
         shellAliases = {
           cd = "z";
           ls = "lsd";
+          la = "lsd -a";
+          ll = "lsd -l";
           update-config = "doas nixos-rebuild switch --flake ~/.nixconfig/";
           sudo = "doas";
           nv = "nvim";
