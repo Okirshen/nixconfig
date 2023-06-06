@@ -66,6 +66,9 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
+
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;

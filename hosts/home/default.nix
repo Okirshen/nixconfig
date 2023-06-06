@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  home-manager.users.okirshen = { pkgs, ... }: {
+  home-manager.users.okirshen = { config, pkgs, ... }: {
 
 
     home.packages = with pkgs; [
@@ -35,7 +35,7 @@
       kicad
       logisim-evolution
       stremio
-      rust-analyzer
+      # rust-analyzer
       godot_4
       aseprite-unfree
       spotify
@@ -59,8 +59,18 @@
       ckan
       ripgrep
       nixfmt
-      neovim
+      tree-sitter
+      # node
+      fzf
+      stylua
+      sumneko-lua-language-server
+      virt-manager
+      nushell
+      du-dust
+      bacon
+      ncspot
     ];
+
 
     home.stateVersion = "22.11";
     xdg.mimeApps.defaultApplications = {
@@ -73,7 +83,10 @@
     };
     xdg.configFile."hypr".source = ./hypr;
     xdg.configFile."zellij".source = ./zellij;
-    xdg.configFile."nvim".source = ./nvim;
+    xdg.configFile."nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixconfig/hosts/home/nvim";
+      recursive = true; 
+    };
     home.sessionVariables = { 
       # EDITOR = "hx";
       TERM = "kitty";
@@ -81,6 +94,9 @@
     };
 
     services = {
+      spotifyd = {
+        enable = true;
+      };
       gpg-agent.enable = true;
       mako = {
         enable = true;
@@ -91,6 +107,13 @@
       };
     };
     programs = {
+      lazygit.enable = true;
+      neovim = {
+        enable = true;
+        viAlias = true;
+        vimAlias = true;
+        defaultEditor = true;
+      };
       gpg.enable = true;
       waybar = {
         enable = true;
