@@ -1,21 +1,25 @@
 { ... }:
 
 {
-  home-manager.users.okirshen = { config, pkgs, ... }: {
+  home-manager.users.okirshen = { pkgs, ... }: {
 
 
     home.packages = with pkgs; [
+      helvum
+      ghc
+      ghcid
+      haskell-language-server
+      cabal-install
+      freecad
+      ncspot
+      bacon
       peek
       kdenlive
-      ungoogled-chromium
-      cataclysm-dda-git
       postman
       dbeaver
       cheat
       tldr
       git-ignore
-      openssl.dev
-      pkg-config
       ngrok
       python310Packages.python-lsp-server
       python3
@@ -32,23 +36,21 @@
       neofetch
       btop
       prismlauncher
-      kicad
+      # kicad
       logisim-evolution
       stremio
-      # rust-analyzer
       godot_4
       aseprite-unfree
       spotify
-      spicetify-cli
       ark
-      blender
+      # blender
       godot-FBX2glTF
       libreoffice
       obsidian
       wofi
       hyprpaper
-      discord
-      # webcord
+      # discord
+      webcord
       pavucontrol
       ncdu
       grim
@@ -59,18 +61,8 @@
       ckan
       ripgrep
       nixfmt
-      tree-sitter
-      # node
-      fzf
-      stylua
-      sumneko-lua-language-server
-      virt-manager
-      nushell
-      du-dust
-      bacon
-      ncspot
+      neovim
     ];
-
 
     home.stateVersion = "22.11";
     xdg.mimeApps.defaultApplications = {
@@ -83,20 +75,13 @@
     };
     xdg.configFile."hypr".source = ./hypr;
     xdg.configFile."zellij".source = ./zellij;
-    xdg.configFile."nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixconfig/hosts/home/nvim";
-      recursive = true; 
-    };
+    xdg.configFile."nvim".source = ./nvim;
     home.sessionVariables = { 
-      # EDITOR = "hx";
       TERM = "kitty";
       NIXOS_OZONE_WL = "1";
     };
 
     services = {
-      spotifyd = {
-        enable = true;
-      };
       gpg-agent.enable = true;
       mako = {
         enable = true;
@@ -107,12 +92,11 @@
       };
     };
     programs = {
-      lazygit.enable = true;
-      neovim = {
+      direnv = {
         enable = true;
-        viAlias = true;
-        vimAlias = true;
-        defaultEditor = true;
+        nix-direnv = {
+          enable = true;
+        };
       };
       gpg.enable = true;
       waybar = {
@@ -145,15 +129,13 @@
         enable = true;
         enableAutosuggestions = true;
         enableCompletion = true;
-        enableSyntaxHighlighting = true;
+        syntaxHighlighting.enable = true;
         enableVteIntegration = true;
         autocd = true;
         dotDir = ".config/zsh";
         shellAliases = {
           cd = "z";
           ls = "lsd";
-          la = "lsd -a";
-          ll = "lsd -l";
           update-config = "doas nixos-rebuild switch --flake ~/.nixconfig/";
           sudo = "doas";
           nv = "nvim";

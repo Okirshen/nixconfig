@@ -5,6 +5,7 @@ return {
       servers = {
         rust_analyzer = {},
         wgsl_analyzer = {},
+        hls = {},
       },
     }
   },
