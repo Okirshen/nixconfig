@@ -62,6 +62,6 @@ in {
       ./configuration.nix
       ../hardware-configuration.nix
       # ./desktop
-      ] ++ (with nixos-hardware.nixosModules; [ common-pc-ssd common-gpu-amd common-cpu-intel ]);
+      ] ++ (with nixos-hardware.nixosModules; [ common-pc-ssd common-gpu-amd common-cpu-amd ]);
   };
 }
