@@ -8,37 +8,34 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/95fd70b2-35f1-41bb-9ce2-38845d5aa101";
+    { device = "/dev/disk/by-uuid/c98dcaa2-e7ad-4e7d-91e2-e3bd39e8b76f";
       fsType = "ext4";
     };
 
-  fileSystems."/home/okirshen/storage" =
-    { device = "/dev/disk/by-uuid/01cce8aa-cd22-47fd-bfa2-49c6e0d5aac8";
-      fsType = "ext4";
-    };
+  boot.initrd.luks.devices."luks-9bb102fa-6213-4c24-8377-10731b12a80b".device = "/dev/disk/by-uuid/9bb102fa-6213-4c24-8377-10731b12a80b";
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/806C-D176";
+    { device = "/dev/disk/by-uuid/CD69-2176";
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/497b4e45-c22c-42af-b920-a5b675a69439"; }
+    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp7s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s20f0u10.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

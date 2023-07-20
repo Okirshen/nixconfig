@@ -5,6 +5,8 @@
 
 
     home.packages = with pkgs; [
+      protonup-qt
+      qbittorrent
       helvum
       ghc
       ghcid
@@ -106,7 +108,7 @@
             layer = "top";
             position = "top";
             height = 35;
-            modules-left = [ "wlr/workspaces" "tray" "cpu" ];
+            modules-left = [ "wlr/workspaces" "tray" "battery" ];
             modules-center = [ "clock" ];
             modules-right = [ "pulseaudio" ];
           };
