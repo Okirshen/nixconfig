@@ -5,6 +5,7 @@
 
 
     home.packages = with pkgs; [
+      lazygit
       protonup-qt
       qbittorrent
       helvum
