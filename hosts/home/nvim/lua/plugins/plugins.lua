@@ -6,6 +6,7 @@ return {
         rust_analyzer = {},
         wgsl_analyzer = {},
         hls = {},
+        "nil" = {},
       },
     }
   },

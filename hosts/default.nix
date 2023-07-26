@@ -1,4 +1,4 @@
-{ nixpkgs, hyprland, home-manager, nixos-hardware, nixneovim, primaryUser }:
+{ nixpkgs, hyprland, home-manager, nixos-hardware, primaryUser }:
 
 let
   system = "x86_64-linux";
@@ -6,16 +6,12 @@ let
     inherit system;
 
     config.allowUnfree = true;
-    config.packageOverrides = pkgs: {
-      godot-FBX2glTF = pkgs.callPackage ../pkgs/godot-FBX2glTF { };
-    };
 
     config.permittedInsecurePackages = [
       "python-2.7.18.6"
     ];
 
     overlays = [
-      nixneovim.overlays.default
       (self: super: {
         aseprite-unfree = super.aseprite-unfree.overrideAttrs (attrs: {
           version = "1.3-beta21";

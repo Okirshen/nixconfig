@@ -48,7 +48,6 @@
       spotify
       ark
       # blender
-      godot-FBX2glTF
       libreoffice
       obsidian
       wofi
@@ -66,6 +65,7 @@
       ripgrep
       nixfmt
       neovim
+      nil
     ];
 
     home.stateVersion = "22.11";

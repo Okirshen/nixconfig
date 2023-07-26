@@ -14,7 +14,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  boot.extraModulePackages = with config.boot.kernelPackages; [ rtl8812au ];
+  # boot.extraModulePackages = with config.boot.kernelPackages; [ rtl8812au ];
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -102,7 +102,6 @@
     gcc
     bat
     lsd
-    godot-FBX2glTF
     unzip
     nil
     fd
