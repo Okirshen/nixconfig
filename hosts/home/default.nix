@@ -6,6 +6,7 @@
 
     home.packages = with pkgs; [
       lazygit
+      brightnessctl
       protonup-qt
       qbittorrent
       helvum
