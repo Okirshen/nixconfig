@@ -9,13 +9,51 @@
     };
   };
 
-  outputs = { nixpkgs, hyprland, nixos-hardware, home-manager, ... }:
-    let 
-      primaryUser = "okirshen";
+  outputs = inputs:
+    let
+      machines =
+        let
+          primaryUser = "okirshen";
+          pkgs = import inputs.nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+            overlays = import ./overlays.nix;
+
+            config.permittedInsecurePackages = [ "python-2.7.18.6" ];
+          };
+        in
+        builtins.mapAttrs
+          (machineName: machineConfig:
+            inputs.nixpkgs.lib.nixosSystem {
+              inherit pkgs;
+              specialArgs = {
+                inherit primaryUser;
+                inherit machineName;
+              };
+
+              modules = [
+                ./common/configuration.nix
+                "${machineConfig}/configuration.nix"
+                inputs.home-manager.nixosModules.home-manager
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.users.${primaryUser} = import ./common/home.nix;
+                }
+                inputs.home-manager.nixosModules.home-manager
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.users.${primaryUser} = import "${machineConfig}/home.nix";
+                }
+              ];
+            }
+          );
     in
     {
-      nixosConfigurations = import ./hosts {
-        inherit nixpkgs hyprland home-manager nixos-hardware primaryUser;
+      nixosConfigurations = machines {
+        okirshen-laptop = ./hosts/laptop;
+        # okirshen-desktop = ./hosts/desktop/;
+      };
     };
-  };
 }
