@@ -45,6 +45,7 @@
     heroic
     tokei
     ckan
+    swaybg
   ];
 
   services = {
