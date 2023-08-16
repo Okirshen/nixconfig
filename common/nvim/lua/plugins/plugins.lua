@@ -6,7 +6,8 @@ return {
         rust_analyzer = {},
         wgsl_analyzer = {},
         hls = {},
-        nil_ls = {},
+        astro = {},
+        tsserver = {},
       },
     }
   },
