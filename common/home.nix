@@ -80,13 +80,30 @@
     };
     vscode = {
       enable = true;
+      package = pkgs.vscodium;
       enableUpdateCheck = false;
+      userSettings = {
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nil";
+        "editor.formatOnSave" = true;
+        "workbench.iconTheme" = "vscode-icons";
+        "workbench.colorTheme" = "Dracula";
+
+      };
       extensions = with pkgs.vscode-extensions; [
-        matklad.rust-analyzer
+        rust-lang.rust-analyzer
         dracula-theme.theme-dracula
         eamodio.gitlens
         file-icons.file-icons
         vscodevim.vim
+        astro-build.astro-vscode
+        formulahendry.auto-close-tag
+        formulahendry.auto-rename-tag
+        mkhl.direnv
+        bungcip.better-toml
+        jnoortheen.nix-ide
+        dbaeumer.vscode-eslint
+        esbenp.prettier-vscode
       ];
     };
     firefox.enable = true;
