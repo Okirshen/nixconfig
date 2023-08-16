@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    bottles
     lazygit
     protonup-qt
     qbittorrent
