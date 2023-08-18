@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    cura
     bottles
     lazygit
     protonup-qt
