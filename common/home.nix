@@ -2,7 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    cura
+    prusa-slicer
+    kdenlive
+    freecad
     bottles
     lazygit
     protonup-qt
@@ -37,7 +39,6 @@
     spotify
     ark
     obsidian
-    wofi
     webcord
     pavucontrol
     ncdu
@@ -62,6 +63,11 @@
 
   programs = {
     gpg.enable = true;
+    wofi = {
+      enable = true;
+      style = builtins.readFile ./wofi.css;
+
+    };
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -202,7 +208,7 @@
     "inode/directory" = "pcmanfm.desktop";
   };
 
-  xdg.configFile."hypr".source = ./hypr;
+  xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
   xdg.configFile."nvim".source = ./nvim;
 
   home.sessionVariables = {

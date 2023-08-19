@@ -36,7 +36,7 @@
   networking.hostName = machineName;
   networking.networkmanager.enable = true;
 
-  time.timeZone = "Asia/Jerusalem";
+  time.timeZone = "Europe/Dublin";
 
   environment.binsh = "${pkgs.dash}/bin/dash";
   users.defaultUserShell = pkgs.zsh;

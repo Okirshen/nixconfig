@@ -52,7 +52,7 @@
     {
       nixosConfigurations = machines {
         okirshen-laptop = ./hosts/laptop;
-        # okirshen-desktop = ./hosts/desktop/;
+        okirshen-desktop = ./hosts/desktop;
       };
     };
 }
