@@ -37,6 +37,7 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Dublin";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   environment.binsh = "${pkgs.dash}/bin/dash";
   users.defaultUserShell = pkgs.zsh;
