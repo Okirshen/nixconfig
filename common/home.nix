@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    lua-language-server
     ldtk
     prusa-slicer
     kdenlive
