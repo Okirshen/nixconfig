@@ -3,14 +3,14 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        rust_analyzer = {},
-        wgsl_analyzer = {},
         hls = {},
         astro = {},
         tsserver = {},
       },
+      inlay_hints = { enabled = true },
     }
   },
+  { "jose-elias-alvarez/null-ls.nvim", enabled = false },
   { "williamboman/mason.nvim", enabled = false },
   { "mofiqul/dracula.nvim" },
   {

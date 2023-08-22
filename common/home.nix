@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, confDir, ... }:
 
 {
   home.packages = with pkgs; [
+    ldtk
     prusa-slicer
     kdenlive
     freecad
@@ -125,7 +126,7 @@
       shellAliases = {
         cd = "z";
         ls = "lsd";
-        update-config = "doas nixos-rebuild switch --flake ~/.nixconfig/";
+        update-config = "doas nixos-rebuild switch --flake ${confDir}";
         sudo = "doas";
         nv = "nvim";
         la = "ls -a";
@@ -209,7 +210,7 @@
   };
 
   xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
-  xdg.configFile."nvim".source = ./nvim;
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${confDir}/common/nvim/";
 
   home.sessionVariables = {
     TERM = "kitty";

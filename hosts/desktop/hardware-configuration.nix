@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
@@ -14,17 +15,20 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [ rtl8812au ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/95fd70b2-35f1-41bb-9ce2-38845d5aa101";
+    {
+      device = "/dev/disk/by-uuid/95fd70b2-35f1-41bb-9ce2-38845d5aa101";
       fsType = "ext4";
     };
 
   fileSystems."/home/okirshen/storage" =
-    { device = "/dev/disk/by-uuid/01cce8aa-cd22-47fd-bfa2-49c6e0d5aac8";
+    {
+      device = "/dev/disk/by-uuid/01cce8aa-cd22-47fd-bfa2-49c6e0d5aac8";
       fsType = "ext4";
     };
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/806C-D176";
+    {
+      device = "/dev/disk/by-uuid/806C-D176";
       fsType = "vfat";
     };
 
