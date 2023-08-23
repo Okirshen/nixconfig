@@ -3,33 +3,15 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        rust_analyzer = {},
-        wgsl_analyzer = {},
         hls = {},
         astro = {},
         tsserver = {},
       },
+      inlay_hints = { enabled = true },
     }
   },
+  { "jose-elias-alvarez/null-ls.nvim", enabled = false },
   { "williamboman/mason.nvim", enabled = false },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "mason.nvim" },
-    opts = function()
-      local nls = require("null-ls")
-      return {
-        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
-        sources = {
-          -- nls.builtins.formatting.fish_indent,
-          -- nls.builtins.diagnostics.fish,
-          -- nls.builtins.formatting.stylua,
-          -- nls.builtins.formatting.shfmt,
-          -- nls.builtins.diagnostics.flake8,
-        },
-      }
-    end,
-  },
   { "mofiqul/dracula.nvim" },
   {
     "LazyVim/LazyVim",
@@ -47,6 +29,13 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      {
+        "Saecki/crates.nvim",
+        event = { "BufRead Cargo.toml" },
+        config = true,
+      }
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
@@ -58,6 +47,13 @@ return {
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")
+
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+        { name = "emoji" },
+        { name = "crates" },
+        { name = "nvim_lua" },
+        { name = "nvim_lsp_signature_help" },
+      }))
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)

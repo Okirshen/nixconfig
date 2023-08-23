@@ -1,8 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, config, confDir, ... }:
 
 {
   home.packages = with pkgs; [
-    cura
+    ldtk
+    prusa-slicer
+    kdenlive
+    freecad
     bottles
     lazygit
     protonup-qt
@@ -37,7 +40,6 @@
     spotify
     ark
     obsidian
-    wofi
     webcord
     pavucontrol
     ncdu
@@ -62,6 +64,11 @@
 
   programs = {
     gpg.enable = true;
+    wofi = {
+      enable = true;
+      style = builtins.readFile ./wofi.css;
+
+    };
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -119,7 +126,7 @@
       shellAliases = {
         cd = "z";
         ls = "lsd";
-        update-config = "doas nixos-rebuild switch --flake ~/.nixconfig/";
+        update-config = "doas nixos-rebuild switch --flake ${confDir}";
         sudo = "doas";
         nv = "nvim";
         la = "ls -a";
@@ -202,8 +209,8 @@
     "inode/directory" = "pcmanfm.desktop";
   };
 
-  xdg.configFile."hypr".source = ./hypr;
-  xdg.configFile."nvim".source = ./nvim;
+  xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${confDir}/common/nvim/";
 
   home.sessionVariables = {
     TERM = "kitty";
