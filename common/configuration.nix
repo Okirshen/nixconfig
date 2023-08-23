@@ -47,6 +47,7 @@
     gamemode.enable = true;
     steam.enable = true;
     dconf.enable = true;
+    udevil.enable = true;
   };
 
   services = {
