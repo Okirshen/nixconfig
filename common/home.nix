@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    cargo-nextest
     lua-language-server
     ldtk
     prusa-slicer
