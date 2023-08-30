@@ -52,6 +52,7 @@
   };
 
   services = {
+    devmon.enable = true;
     xserver = {
       enable = true;
       libinput = {
