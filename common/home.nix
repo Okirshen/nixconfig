@@ -2,6 +2,11 @@
 
 {
   home.packages = with pkgs; [
+    chafa
+    teamspeak_client
+    cura
+    protonvpn-gui
+    tabnine
     cargo-nextest
     lua-language-server
     ldtk
@@ -42,7 +47,7 @@
     spotify
     ark
     obsidian
-    webcord
+    discord
     pavucontrol
     ncdu
     grim
@@ -66,6 +71,9 @@
 
   programs = {
     gpg.enable = true;
+    mangohud = {
+      enable = true;
+    };
     wofi = {
       enable = true;
       style = builtins.readFile ./wofi.css;
