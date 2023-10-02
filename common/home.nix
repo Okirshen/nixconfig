@@ -8,6 +8,7 @@
     protonvpn-gui
     tabnine
     cargo-nextest
+    cargo-generate
     lua-language-server
     ldtk
     prusa-slicer
