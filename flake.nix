@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,9 +21,9 @@
             pkgs = import inputs.nixpkgs {
               system = "x86_64-linux";
               config.allowUnfree = true;
-              overlays = import ./overlays.nix ++ [ inputs.neovim-nightly-overlay.overlay ];
+              overlays = import ./overlays.nix;
 
-              config.permittedInsecurePackages = [ "python-2.7.18.6" ];
+              config.permittedInsecurePackages = [ "python-2.7.18.6" "electron-24.8.6" ];
             };
           in
           inputs.nixpkgs.lib.nixosSystem {

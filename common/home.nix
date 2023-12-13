@@ -2,6 +2,11 @@
 
 {
   home.packages = with pkgs; [
+    logiops
+    libreoffice-qt
+    zoom-us
+    tracy
+    # logseq
     chafa
     teamspeak_client
     cura
@@ -13,8 +18,7 @@
     ldtk
     prusa-slicer
     kdenlive
-    freecad
-    bottles
+    # freecad
     lazygit
     protonup-qt
     qbittorrent
@@ -47,14 +51,14 @@
     aseprite-unfree
     spotify
     ark
-    obsidian
+    # obsidian
     discord
     pavucontrol
     ncdu
     grim
     slurp
     wl-clipboard
-    heroic
+    # heroic
     tokei
     ckan
     swaybg

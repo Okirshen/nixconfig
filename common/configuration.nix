@@ -16,6 +16,7 @@
     isNormalUser = true;
     extraGroups = [
       "networkmanager"
+      "libvirtd"
       "wheel"
       "input"
       "docker"
@@ -36,7 +37,7 @@
   networking.hostName = machineName;
   networking.networkmanager.enable = true;
 
-  time.timeZone = "Europe/Dublin";
+  time.timeZone = "Asia/Jerusalem";
   # i18n.defaultLocale = "en_US.UTF-8";
 
   environment.binsh = "${pkgs.dash}/bin/dash";
@@ -50,9 +51,11 @@
     gamescope.enable = true;
     dconf.enable = true;
     udevil.enable = true;
+    virt-manager.enable = true;
   };
 
   services = {
+    flatpak.enable = true;
     devmon.enable = true;
     xserver = {
       enable = true;
