@@ -2,6 +2,9 @@
 
 {
   home.packages = with pkgs; [
+    jetbrains.idea-community
+    arduino
+    python311Packages.pyserial
     logiops
     libreoffice-qt
     zoom-us
@@ -224,7 +227,6 @@
     "inode/directory" = "pcmanfm.desktop";
   };
 
-  xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${confDir}/common/nvim/";
 
   home.sessionVariables = {

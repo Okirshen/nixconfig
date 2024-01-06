@@ -31,6 +31,7 @@
             inherit specialArgs;
 
             modules = [
+              ./modules
               ./common/configuration.nix
               "${machineConfig}/configuration.nix"
               inputs.home-manager.nixosModules.home-manager

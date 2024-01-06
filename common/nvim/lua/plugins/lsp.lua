@@ -6,6 +6,7 @@ return {
         hls = {},
         astro = {},
         tsserver = {},
+        nixd = {},
       },
       inlay_hints = { enabled = true },
     }

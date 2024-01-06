@@ -20,8 +20,22 @@
       "wheel"
       "input"
       "docker"
+      "dialout"
     ];
   };
+
+  ncfg = {
+    shell = {
+      wezterm.enable = true;
+    };
+    wm.hyprland.enable = true;
+    programs = {
+      misc = {
+        swaylock.enable = true;
+      };
+    };
+  };
+
 
   boot.loader = {
     systemd-boot = {
@@ -45,7 +59,6 @@
 
   programs = {
     zsh.enable = true;
-    hyprland.enable = true;
     gamemode.enable = true;
     steam.enable = true;
     gamescope.enable = true;
@@ -118,7 +131,7 @@
     lsd
     gcc
     bat
-    nil
+    nixd
     fd
     cmake
     nixpkgs-fmt
