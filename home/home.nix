@@ -1,6 +1,17 @@
 { pkgs, config, confDir, ... }:
 
 {
+  imports = [ ./modules ];
+
+  ncfg = {
+    programs = {
+      editors.neovim = {
+        enable = true;
+        defaultEditor = true;
+      };
+    };
+  };
+
   home.packages = with pkgs; [
     emmet-ls
     logisim-evolution
@@ -52,7 +63,7 @@
     prismlauncher
     stremio
     godot_4
-    aseprite-unfree
+    # aseprite-unfree
     spotify
     ark
     # obsidian
@@ -123,7 +134,7 @@
     firefox.enable = true;
     zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       enableVteIntegration = true;
@@ -214,8 +225,6 @@
     ];
     "inode/directory" = "pcmanfm.desktop";
   };
-
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${confDir}/common/nvim/";
 
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";

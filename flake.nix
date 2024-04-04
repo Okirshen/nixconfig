@@ -39,7 +39,7 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = specialArgs;
-                home-manager.users.${specialArgs.primaryUser} = import ./common/home.nix;
+                home-manager.users.${specialArgs.primaryUser} = import ./home/home.nix;
               }
               inputs.home-manager.nixosModules.home-manager
               {

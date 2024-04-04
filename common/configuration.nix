@@ -32,6 +32,7 @@
     programs = {
       misc = {
         swaylock.enable = true;
+        waybar.enable = true;
       };
     };
   };
@@ -79,8 +80,10 @@
       };
       desktopManager.plasma5.enable = true;
       displayManager.sddm.enable = true;
-      layout = "us,il";
-      xkbOptions = "grp:win_space_toggle";
+      xkb = {
+        layout = "us,il";
+        options = "grp:win_space_toggle";
+      };
     };
     printing.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -110,17 +113,19 @@
   };
 
   hardware = {
+    enableRedistributableFirmware = true;
     bluetooth.enable = true;
     xone.enable = true;
   };
 
   fonts.packages = with pkgs; [
+    noto-fonts
     nerdfonts
     twemoji-color-font
   ];
 
   environment.systemPackages = with pkgs; [
-    neovim
+    vim
     wget
     git
     bottom
