@@ -6,6 +6,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    auto-cpufreq = {
+      url = "github:AdnanHodzic/auto-cpufreq";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -32,8 +36,9 @@
 
             modules = [
               ./modules
-              ./common/configuration.nix
+              ./configuration.nix
               "${machineConfig}/configuration.nix"
+              inputs.auto-cpufreq.nixosModules.default
               inputs.home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;

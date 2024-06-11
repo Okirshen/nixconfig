@@ -5,9 +5,11 @@
     substituters = [
       "https://nix-community.cachix.org"
       "https://cache.nixos.org/"
+      "https://crane.cachix.org/"
     ];
     trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "crane.cachix.org-1:8Scfpmn9w+hGdXH/Q9tTLiYAE/2dnJYRJP7kl80GuRk="
     ];
     experimental-features = [ "nix-command" "flakes" ];
   };
@@ -49,6 +51,9 @@
     };
   };
 
+
+  boot.supportedFilesystems = [ "ntfs" ];
+
   networking.hostName = machineName;
   networking.networkmanager.enable = true;
 
@@ -71,15 +76,16 @@
   services = {
     flatpak.enable = true;
     devmon.enable = true;
+    libinput = {
+      enable = true;
+      mouse.accelProfile = "flat";
+      touchpad.accelProfile = "flat";
+    };
+
+    displayManager.sddm.enable = true;
     xserver = {
       enable = true;
-      libinput = {
-        enable = true;
-        mouse.accelProfile = "flat";
-        touchpad.accelProfile = "flat";
-      };
       desktopManager.plasma5.enable = true;
-      displayManager.sddm.enable = true;
       xkb = {
         layout = "us,il";
         options = "grp:win_space_toggle";
@@ -92,6 +98,7 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      jack.enable = true;
     };
   };
 

@@ -2,6 +2,8 @@
 
 {
   home.packages = with pkgs; [
+    protontricks
+    ffmpeg
     emmet-ls
     logisim-evolution
     jetbrains.idea-community

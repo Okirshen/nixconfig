@@ -13,6 +13,8 @@
   };
 
   home.packages = with pkgs; [
+    protontricks
+    ffmpeg
     emmet-ls
     logisim-evolution
     jetbrains.idea-community
@@ -68,6 +70,7 @@
     ark
     # obsidian
     discord
+    # webcord # fucking spotify intergration doesnt fucking work
     pavucontrol
     ncdu
     grim

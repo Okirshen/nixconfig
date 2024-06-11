@@ -19,7 +19,7 @@
   };
 
   hardware.openrazer.enable = true;
-  hardware.openrazer.users = [primaryUser];
+  hardware.openrazer.users = [ primaryUser ];
   environment.systemPackages = with pkgs; [
     openrazer-daemon
     polychromatic

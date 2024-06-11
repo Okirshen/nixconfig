@@ -3,11 +3,11 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        hls = {},
-        astro = {},
+        -- hls = {},
+        -- astro = {},
         tsserver = {},
         nixd = {},
-        jdtls = {},
+        -- jdtls = {},
         emmet_ls = {},
       },
       inlay_hints = { enabled = true },
