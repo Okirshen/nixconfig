@@ -58,7 +58,6 @@
     thefuck
     gitAndTools.gh
     mpv
-    rustup
     obs-studio
     pfetch
     neofetch
