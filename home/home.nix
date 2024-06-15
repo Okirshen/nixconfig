@@ -68,8 +68,8 @@
     spotify
     ark
     # obsidian
-    discord
-    # webcord # fucking spotify intergration doesnt fucking work
+    # discord #fucking spotify integration also doesnt fucking work
+    webcord # fucking spotify intergration doesnt fucking work
     pavucontrol
     ncdu
     grim
