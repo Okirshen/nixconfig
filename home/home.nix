@@ -67,7 +67,7 @@
     # aseprite-unfree
     spotify
     ark
-    # obsidian
+    obsidian
     # discord #fucking spotify integration also doesnt fucking work
     webcord # fucking spotify intergration doesnt fucking work
     pavucontrol
