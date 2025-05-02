@@ -28,6 +28,7 @@
 
   ncfg = {
     shell = {
+      nushell.enable = true;
       wezterm.enable = true;
     };
     wm.hyprland.enable = true;
@@ -47,7 +48,7 @@
     };
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+      efiSysMountPoint = "/boot";
     };
   };
 
@@ -61,10 +62,10 @@
   # i18n.defaultLocale = "en_US.UTF-8";
 
   environment.binsh = "${pkgs.dash}/bin/dash";
-  users.defaultUserShell = pkgs.zsh;
 
   programs = {
-    zsh.enable = true;
+    nix-ld.enable = true;
+    zsh.enable = false;
     gamemode.enable = true;
     steam.enable = true;
     gamescope.enable = true;
@@ -82,10 +83,12 @@
       touchpad.accelProfile = "flat";
     };
 
+    udev.extraRules = ''SUBSYSTEM=="usb", ATTR{idProduct}=="3106", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"'';
+
     displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
     xserver = {
       enable = true;
-      desktopManager.plasma5.enable = true;
       xkb = {
         layout = "us,il";
         options = "grp:win_space_toggle";
@@ -112,22 +115,24 @@
         persist = true;
       }];
     };
-    sudo.enable = false;
+    # sudo.enable = false;
   };
 
   virtualisation = {
     libvirtd.enable = true;
+    docker.enable = true;
   };
 
   hardware = {
     enableRedistributableFirmware = true;
     bluetooth.enable = true;
-    xone.enable = true;
+    # xone.enable = true;
   };
 
   fonts.packages = with pkgs; [
+    corefonts
     noto-fonts
-    nerdfonts
+    nerd-fonts.fira-code
     twemoji-color-font
   ];
 
@@ -148,6 +153,7 @@
     cmake
     nixpkgs-fmt
     ripgrep
+    fzf
   ];
 
   # pls dont fuck with

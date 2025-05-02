@@ -13,6 +13,12 @@
   };
 
   home.packages = with pkgs; [
+    # starsector #unmoddable version
+    ollama
+    kdePackages.filelight
+    the-powder-toy
+    r2modman
+    discord-canary
     protontricks
     ffmpeg
     emmet-ls
@@ -21,7 +27,7 @@
     arduino
     python311Packages.pyserial
     logiops
-    libreoffice-qt
+    onlyoffice-bin_latest
     zoom-us
     tracy
     # logseq
@@ -34,7 +40,7 @@
     lua-language-server
     ldtk
     prusa-slicer
-    kdenlive
+    kdePackages.kdenlive
     # freecad
     lazygit
     protonup-qt
@@ -47,7 +53,6 @@
     ncspot
     bacon
     peek
-    kdenlive
     git-ignore
     ngrok
     python311Packages.python-lsp-server
@@ -64,9 +69,9 @@
     prismlauncher
     stremio
     godot_4
-    # aseprite-unfree
+    aseprite
     spotify
-    ark
+    kdePackages.ark
     obsidian
     # discord #fucking spotify integration also doesnt fucking work
     webcord # fucking spotify intergration doesnt fucking work
@@ -79,6 +84,7 @@
     tokei
     ckan
     swaybg
+    virtualenv
   ];
 
   services = {
@@ -108,6 +114,8 @@
     vscode = {
       enable = true;
       package = pkgs.vscodium;
+      profiles.default = {
+
       enableUpdateCheck = false;
       userSettings = {
         "nix.enableLanguageServer" = true;
@@ -132,6 +140,7 @@
         dbaeumer.vscode-eslint
         esbenp.prettier-vscode
       ];
+      };
     };
     firefox.enable = true;
     zsh = {
@@ -170,7 +179,7 @@
     kitty = {
       enable = true;
       font = {
-        package = pkgs.nerdfonts;
+        package = pkgs.nerd-fonts.fira-code;
         name = "FiraCode Nerd Font";
       };
 
@@ -214,6 +223,7 @@
         inactive_border_color = "#6272a4";
       };
     };
+    carapace.enable = true;
     zoxide = {
       enable = true;
       enableZshIntegration = true;
